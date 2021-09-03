@@ -14,7 +14,8 @@ const {
     randomUp, 
     sum,
     roll,
-    pick
+    pick,
+    one
 } = require('./functions.js')
 
 function pickBricabrac(){
@@ -24,7 +25,7 @@ function pickBricabrac(){
         let pips = roll('1d8').sum;
         return `${pips} pips`;
     } else {
-        return myBricabrac;
+        return myBricabrac.toLowerCase();
     }
 }
 
@@ -45,4 +46,4 @@ let myTrappings = {
     itemB: myBackground.itemB,
 }
 
-console.log(`You are ${myName}, with a ${pickBricabrac(bricabrac)}.\n\nYou were born under the sign of the ${myBirthStar.sign}, which makes you ${myPersonality.positive}, but ${myPersonality.negative}.\n\nYou had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.\n\n${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.\n\n Mice knew you as the ${myTrappings.background} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.`);
+console.log(`You are ${myName}, with ${one(pickBricabrac(bricabrac))}.\n\nYou were born under the sign of the ${myBirthStar.sign}, which makes you ${myPersonality.positive}, but ${myPersonality.negative}.\n\nYou had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.\n\n${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.\n\nMice knew you as ${one(myTrappings.background)} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.`);

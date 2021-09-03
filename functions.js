@@ -2,7 +2,8 @@ module.exports = {
     randomUp, 
     sum,
     roll,
-    pick
+    pick,
+    one
 };
 
 function randomUp(n) {
@@ -42,4 +43,14 @@ function pick (array) {
   let index  = randomUp(array.length - 1);
   let choice = array[index];
   return choice;
+}
+
+function one(string) {
+    let first = string.slice(0,1).toLowerCase()
+    const vowels = ['a', 'e', 'i', 'o', 'u']
+    let vstart = vowels.indexOf(first)!=-1
+
+    vstart ? article = 'an' : article = 'a'
+
+    return (`${article} ${string}`)
 }
