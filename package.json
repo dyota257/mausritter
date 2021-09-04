@@ -1,0 +1,23 @@
+{
+  "name": "mausritter",
+  "version": "1.0.0",
+  "description": "JavaScript implementation of tabletop roleplaying game Mausritter, by Isaac Williams (Losing Games)",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyota257/mausritter.git"
+  },
+  "author": "Dyota Tanuwibawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dyota257/mausritter/issues"
+  },
+  "homepage": "https://github.com/dyota257/mausritter#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
+  }
+}

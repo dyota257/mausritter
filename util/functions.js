@@ -5,6 +5,7 @@ module.exports = {
     pick,
     one,
     join,
+    capitalise
 };
 
 function randomUp(n) {
@@ -62,4 +63,12 @@ function join(sentence) {
     let first = firstLetter(sentence).toLowerCase()
     let rest = sentence.slice(1,)
     return `${first}${rest}` 
+}
+
+
+function capitalise(string) {
+    let first = string.slice(0,1).toUpperCase()
+    let rest = string.slice(1,).toLowerCase()
+
+    return `${first}${rest}`
 }

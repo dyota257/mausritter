@@ -1,5 +1,7 @@
-const spells = require('./tables/spells.js')
-const {pick,join} = require('./functions.js')
+module.exports = recharge
+
+const spells = require('../tables/spells.js')
+const {pick,join} = require('../util/functions.js')
 
 function recharge(spell) {
     const requirement = join(spell.recharge)
