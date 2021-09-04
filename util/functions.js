@@ -5,11 +5,16 @@ module.exports = {
     pick,
     one,
     join,
-    capitalise
+    capitalise,
+    firstLetter
 };
 
 function randomUp(n) {
     return Math.ceil(Math.random() * n)
+}
+
+function randomDown(n) {
+    return Math.floor(Math.random() * n)
 }
 
 function sum(array) {
@@ -42,7 +47,7 @@ function roll(xdx) {
 }
 
 function pick (array) {
-  let index  = randomUp(array.length - 1);
+  let index  = randomDown(array.length);
   let choice = array[index];
   return choice;
 }

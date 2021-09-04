@@ -11,6 +11,11 @@ app.get('/cast/:spell/:power', (req, res) => {
     res.send(cast(req.params.spell, req.params.power))
 })
 
+const loot = require('./actions/loot.js')
+app.get('/loot/:number', (req, res) => {
+    res.send(loot(Number(req.params.number)))
+})
+
 // Heroku NEEDS the process.end.PORT part, not 3000
 app.listen(
     process.env.PORT || 3000, 
