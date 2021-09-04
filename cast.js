@@ -26,5 +26,5 @@ function cast(spell, power) {
     console.log(`You rolled ${dice.rolls}.`)
     console.log(effect)
     usage>0 && console.log(`Usage of ${spell.spell} is depleted by ${usage}`)
-    sixes>0 && console.log(`You take ${miscastDamage} damage to your WIL. Make a WIL save or go Mad!`)
+    sixes>0 && console.log(`The spell was partially miscast. You take ${miscastDamage} damage to your WIL. Make a WIL save or go Mad!`)
 }

@@ -3,7 +3,8 @@ module.exports = {
     sum,
     roll,
     pick,
-    one
+    one,
+    join,
 };
 
 function randomUp(n) {
@@ -45,12 +46,20 @@ function pick (array) {
   return choice;
 }
 
+function firstLetter(string) {return string.slice(0,1)}
+
 function one(string) {
-    let first = string.slice(0,1).toLowerCase()
+    let first = firstLetter(string).toLowerCase()
     const vowels = ['a', 'e', 'i', 'o', 'u']
     let vstart = vowels.indexOf(first)!=-1
 
     vstart ? article = 'an' : article = 'a'
 
     return (`${article} ${string}`)
+}
+
+function join(sentence) {
+    let first = firstLetter(sentence).toLowerCase()
+    let rest = sentence.slice(1,)
+    return `${first}${rest}` 
 }
