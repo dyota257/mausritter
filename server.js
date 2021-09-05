@@ -12,11 +12,26 @@ app.get('/',(req, res) => {
     )
 })
 
-const cast = require('./actions/cast.js')
-app.get('/cast/:spell/:power', (req, res) => {
+const {cast, choose} = require('./actions/cast.js')
+// const spells = require('./tables/spells.js')
+app.get('/cast/:spell/:power?', (req, res) => {
+    let spell = req.params.spell
+    let power = req.params.power
+    let output = ''
+    
+    if (choose(spell)===undefined) {
+        output = 'That is not a recognised spell. Are you sure you said the right incantation?'
+    } else if(power==undefined) {
+        output = 'You have to set what power to cast at! (1-3)'
+    } else if (power > 3) {
+        output = 'You need to give a power level between 1 to 3.'
+    } else {
+        output = cast(spell, power)
+    }
+    
     res.render(
         'index',
-        {text:cast(req.params.spell, req.params.power)}
+        {text:output}
     )
 })
 

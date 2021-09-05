@@ -1,4 +1,4 @@
-module.exports = cast
+module.exports = {cast, choose}
 
 const spells = require('../tables/spells.js')
 
@@ -37,7 +37,7 @@ function cast(spellname, power) {
 function choose(spellname) {
     let spell = spells.filter(
         (e) => {
-            return e.spell.toLowerCase()  === spellname.toLowerCase()
+            return e.spell.toLowerCase().replace(' ','')  === spellname.toLowerCase().replace(' ', '')
         }
     )
     console.log(spell)
