@@ -41,6 +41,24 @@ function makeNewMouse() {
     }
     let attr = makeNewCharacterAttributes()
     
-    return (`You are ${myName}.\n\nYou were born under the sign of the ${myBirthStar.sign}, which makes you ${myPersonality.positive}, but ${myPersonality.negative}.\n\nYou had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.\n\n${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.\n\nMice knew you as ${one(myTrappings.background)} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.\n\n\nYour stats are:\nHP: ${myBackground.hp}\nSTR: ${attr.STR}\nDEX: ${attr.DEX}\nWIL: ${attr.WIL}\nPips: ${myBackground.pips}`)
+    return (
+        `
+            <p>You are ${myName}.</p>
+            <p>You were born under the sign of the ${myBirthStar.sign}, which makes you ${myPersonality.positive}, but ${myPersonality.negative}.</p>
+            <p>You had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.</p>
+            <p>${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.</p>
+            <p>Mice knew you as ${one(myTrappings.background)} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.</p>
+            <p>
+                Your stats are:
+                <ul>
+                    <li>HP: ${myBackground.hp}
+                    <li>STR: ${attr.STR}
+                    <li>DEX: ${attr.DEX}
+                    <li>WIL: ${attr.WIL}
+                    <li>Pips: ${myBackground.pips}
+                </ul>
+            </p>
+        `
+        )
 }
 

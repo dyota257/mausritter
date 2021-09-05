@@ -24,11 +24,13 @@ function cast(spellname, power) {
     let sixes = dice.rolls.filter((e)=>{return e===6}).length
     miscastDamage = roll(`${sixes}d6`).sum
     
-    return `You cast ${spell.spell} with ${power} power!`
-    + (`You rolled ${dice.rolls}.`)
-    + (effect)
-    + (usage>0 && (`Usage of ${spell.spell} is depleted by ${usage}`))
-    + (sixes>0 && (`The spell was partially miscast. You take ${miscastDamage} damage to your WIL. Make a WIL save or go Mad!`))
+    return `
+        <p>You cast ${spell.spell} with ${power} power!</p>
+        <p>You rolled ${dice.rolls}.</p>
+        <p>${effect}</p>
+        ${usage>0 ? (`<p>Usage of ${spell.spell} is depleted by ${usage}</p>`) : ''}
+        ${sixes>0 ? (`<p>The spell was partially miscast. You take ${miscastDamage} damage to your WIL. Make a WIL save or go Mad!</p>`) : ''}
+    `
 }
 
 
