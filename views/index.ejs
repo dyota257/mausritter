@@ -11,7 +11,32 @@
 </head>
 <body>
     <div class="nes-container is-rounded is-dark">
-        <%- text %> 
+        <span class="nes-text"><%- text %></span>
+        
+        
+        <table>
+            <tr>
+                <td><input type="text" id="command" class="nes-input is-dark"></td>
+                <td><button type="button" class="nes-btn is-primary" id="go">Go</button></td>
+            </tr>
+        </table>
+        
     </div>
+
+    <script>
+        // empty the text box
+        document.querySelectorAll('#command')[0].value = ''
+        
+        document.querySelectorAll('#go')[0].addEventListener('click', ()=>{
+            let command = document.querySelectorAll('#command')[0].value
+            let words = command.split(' ')
+            let path = words.join('/')
+                       
+            location.href = `/${path}`
+        })
+    </script>
+
+    
+
 </body>
 </html>

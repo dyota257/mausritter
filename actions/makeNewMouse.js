@@ -48,16 +48,17 @@ function makeNewMouse() {
             <p>You had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.</p>
             <p>${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.</p>
             <p>Mice knew you as ${one(myTrappings.background)} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.</p>
-            <p>
+            
+            <div>
                 Your stats are:
                 <ul>
-                    <li>HP: ${myBackground.hp}
-                    <li>STR: ${attr.STR}
-                    <li>DEX: ${attr.DEX}
-                    <li>WIL: ${attr.WIL}
-                    <li>Pips: ${myBackground.pips}
+                    <li>HP: ${myBackground.hp}</li>
+                    <li>STR: ${attr.STR}</li>
+                    <li>DEX: ${attr.DEX}</li>
+                    <li>WIL: ${attr.WIL}</li>
+                    <li>Pips: ${myBackground.pips}</li>
                 </ul>
-            </p>
+            </div>
         `
         )
 }

@@ -4,22 +4,33 @@ const app       = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
-const makeNewMouse = require('./actions/makeNewMouse.js')
+
 app.get('/',(req, res) => {
+    res.render(
+        'index',
+        {text: 'Enter a command to start'}
+    )
+})
+
+const makeNewMouse = require('./actions/makeNewMouse.js')
+app.get('/make/newmouse',(req, res) => {
     res.render(
         'index',
         {text: makeNewMouse()}
     )
 })
 
+
 const {cast, choose} = require('./actions/cast.js')
 // const spells = require('./tables/spells.js')
-app.get('/cast/:spell/:power?', (req, res) => {
+app.get('/cast/:spell?/:power?', (req, res) => {
     let spell = req.params.spell
     let power = req.params.power
     let output = ''
     
-    if (choose(spell)===undefined) {
+    if (spell === undefined){
+        output = 'What spell did you mean to cast?'
+    } else if (choose(spell)===undefined) {
         output = 'That is not a recognised spell. Are you sure you said the right incantation?'
     } else if(power==undefined) {
         output = 'You have to set what power to cast at! (1-3)'
@@ -28,7 +39,7 @@ app.get('/cast/:spell/:power?', (req, res) => {
     } else {
         output = cast(spell, power)
     }
-    
+
     res.render(
         'index',
         {text:output}
