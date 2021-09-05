@@ -21,11 +21,19 @@ app.get('/cast/:spell/:power', (req, res) => {
 })
 
 const loot = require('./actions/loot.js')
-app.get('/loot/:number', (req, res) => {
-    res.render(
-        'index',
-        {text:loot(Number(req.params.number))}
-    )
+app.get('/loot/:number?', (req, res) => {
+    if(req.params.number==undefined) {
+        res.render(
+            'index',
+            {text:loot(2)}
+        )    
+    } else {
+        res.render(
+            'index',
+            {text:loot(Number(req.params.number))}
+        )
+    }
+
 })
 
 // Heroku NEEDS the process.end.PORT part, not 3000

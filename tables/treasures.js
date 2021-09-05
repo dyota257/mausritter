@@ -98,18 +98,20 @@ function pickMagicSword() {
     return `${cursed}magic sword of ${join(sword.name)}. ${effectLeadIn} ${effectDesc}. ${cursed && `However, it does not do this; instead it is cursed with: ${curse.curse}. It can only be lifted by ${join(curse.lift)}.`}`
 }
 
+const spells = require('../tables/spells.js')
+
 const treasures = [
-    {order: [1],          treasure: ()=>{return pickMagicSword()}},
-    {order: [2],          treasure: ()=>{return `Random spell`}},
-    {order: [3],          treasure: ()=>{return `Roll for Trinket`}},
-    {order: [4],          treasure: ()=>{return `Roll for Valuable treasure`}},
-    {order: [5],          treasure: ()=>{return `Roll for Unusual treasure`}},
-    {order: [6, 7, 8],    treasure: ()=>{return `Roll for Large treasure`}},
-    {order: [9, 10],      treasure: ()=>{return `Roll for Useful treasure`}},
-    {order: [11],         treasure: ()=>{return `Box containing ${roll('1d6').sum * 100} pips`}},
-    {order: [12, 13, 14], treasure: ()=>{return `Bag containing ${roll('1d6').sum * 50} pips`}},
-    {order: [15, 16, 17], treasure: ()=>{return `Purse containing ${roll('1d6').sum * 10} pips`}},
-    {order: [18, 19, 20], treasure: ()=>{return `Loose scattering of ${roll('1d6').sum * 5} pips`}}
+    {order: [1],          rarity: '(rare)',     treasure: ()=>{return pickMagicSword()}                                  },
+    {order: [2],          rarity: '(rare)',     treasure: ()=>{return `magic spell: ${pick(spells).spell}`}              },
+    {order: [3],          rarity: '(rare)',     treasure: ()=>{return join(pick(trinkets))}                              },
+    {order: [4],          rarity: '(rare)',     treasure: ()=>{return join(pick(valuableTreasure))}                      },
+    {order: [5],          rarity: '(rare)',     treasure: ()=>{return join(pick(unusualTreasure))}                       },
+    {order: [6, 7, 8],    rarity: '(rare)',     treasure: ()=>{return join(pick(largeTreasure))}                         },
+    {order: [9, 10],      rarity: '(uncommon)', treasure: ()=>{return join(pick(usefulTreasure))}                        },
+    {order: [11],         rarity: '(rare)',     treasure: ()=>{return `box containing ${roll('1d6').sum * 100} pips`}    },
+    {order: [12, 13, 14], rarity: '(common)',   treasure: ()=>{return `bag containing ${roll('1d6').sum * 50} pips`}     },
+    {order: [15, 16, 17], rarity: '(common)',   treasure: ()=>{return `purse containing ${roll('1d6').sum * 10} pips`}   },
+    {order: [18, 19, 20], rarity: '(common)',   treasure: ()=>{return `loose scattering of ${roll('1d6').sum * 5} pips`} },
 ]
 
 module.exports = {
