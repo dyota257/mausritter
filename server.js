@@ -4,7 +4,6 @@ const app       = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
-
 app.get('/',(req, res) => {
     res.render(
         'index',
@@ -38,6 +37,25 @@ app.get('/cast/:spell?/:power?', (req, res) => {
         output = 'You need to give a power level between 1 to 3.'
     } else {
         output = cast(spell, power)
+    }
+
+    res.render(
+        'index',
+        {text:output}
+    )
+})
+
+const recharge = require('./actions/recharge.js')
+app.get('/recharge/:spell?/', (req, res) => {
+    let spell = req.params.spell
+    let output = ''
+    
+    if (spell === undefined){
+        output = 'What spell did you mean to recharge?'
+    } else if (choose(spell)===undefined) {
+        output = 'That is not a recognised spell. Are you sure you said the right incantation?'
+    } else {
+        output = recharge(choose(spell))
     }
 
     res.render(

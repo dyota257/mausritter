@@ -21,6 +21,7 @@ const {
 } = require('../util/functions.js')
 
 const makeNewCharacterAttributes = require('./attributes.js')
+const {dice,good,em,bad} = require('../util/styles.js')
 
 function makeNewMouse() {
     let myName = `${pick(names)} ${pick(matriname)}`
@@ -40,23 +41,28 @@ function makeNewMouse() {
         itemB: myBackground.itemB,
     }
     let attr = makeNewCharacterAttributes()
+
+    let stats = [attr.STR,attr.DEX,attr.WIL,]
+    let highestStat = stats.sort((a,b)=> b-a)[0]
+    console.log(highestStat)
     
     return (
         `
             <p>You are ${myName}.</p>
-            <p>You were born under the sign of the ${myBirthStar.sign}, which makes you ${myPersonality.positive}, but ${myPersonality.negative}.</p>
-            <p>You had started as a little pink mouseling but later grew to be ${pick(coat).colour.toLowerCase()} from head to toe, with a ${pick(coat).pattern.toLowerCase()} pattern.</p>
-            <p>${pick(remarkPhysicalDetails)} ${pick(physicalDetails).toLowerCase()}, ${pick(selfEsteemPhysicalDetails)}.</p>
-            <p>Mice knew you as ${one(myTrappings.background)} before, but that was a past life. Now, with your ${myTrappings.itemA} and ${myTrappings.itemB}, you are ready to embark on a world of adventure.</p>
+            <p>You were born under the sign of the ${em(myBirthStar.sign)}, which makes you ${em(myPersonality.positive)}, but ${em(myPersonality.negative)}.</p>
+            <p>You had started as a little pink mouseling but later grew to be ${em(pick(coat).colour.toLowerCase())} from head to toe, with a ${em(pick(coat).pattern.toLowerCase())} pattern.</p>
+            <p>${pick(remarkPhysicalDetails)} ${em(pick(physicalDetails).toLowerCase())}, ${pick(selfEsteemPhysicalDetails)}.</p>
+            <p>Mice knew you as ${em(one(myTrappings.background))} before, but that was a past life. Now, you are ready to embark on a world of adventure.</p>
+            <p>You have with you some ${em('torches')}, ${em('rations')}, ${em(myTrappings.itemA)}, ${em(myTrappings.itemB)}, and a weapon of your choice</p>
             
             <div>
                 Your stats are:
                 <ul>
-                    <li>HP: ${myBackground.hp}</li>
-                    <li>STR: ${attr.STR}</li>
-                    <li>DEX: ${attr.DEX}</li>
-                    <li>WIL: ${attr.WIL}</li>
-                    <li>Pips: ${myBackground.pips}</li>
+                <li>HP: ${figure(myBackground.hp)}</li>
+                <li>STR: ${figure(attr.STR)}</li>
+                <li>DEX: ${figure(attr.DEX)}</li>
+                <li>WIL: ${figure(attr.WIL)}</li>
+                <li>Pips: ${figure(myBackground.pips)}</li>
                 </ul>
             </div>
         `

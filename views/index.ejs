@@ -12,11 +12,12 @@
 <body>
     <div class="nes-container is-rounded is-dark">
         <span class="nes-text"><%- text %></span>
-        
+        <br>
+        <br>
         
         <table>
             <tr>
-                <td><input type="text" id="command" class="nes-input is-dark"></td>
+                <td><input type="text" id="command" class="nes-input is-dark" autofocus></td>
                 <td><button type="button" class="nes-btn is-primary" id="go">Go</button></td>
             </tr>
         </table>
@@ -25,7 +26,8 @@
 
     <script>
         // empty the text box
-        document.querySelectorAll('#command')[0].value = ''
+        let commandBar = document.querySelectorAll('#command')[0]
+        commandBar.value = ''
         
         document.querySelectorAll('#go')[0].addEventListener('click', ()=>{
             let command = document.querySelectorAll('#command')[0].value
@@ -34,6 +36,17 @@
                        
             location.href = `/${path}`
         })
+
+        // Execute a function when the user presses a key on the keyboard
+        commandBar.addEventListener("keydown", function(event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("go").click();
+            }
+        }); 
     </script>
 
     

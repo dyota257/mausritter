@@ -2,12 +2,15 @@ module.exports = {cast, choose}
 
 const spells = require('../tables/spells.js')
 
+
 const {
     randomUp, 
     sum,
     roll,
     pick
 } = require('../util/functions.js')
+
+const {figure,good,em,bad} = require('../util/styles.js')
 
 function cast(spellname, power) {
     let spell = choose(spellname)
@@ -25,11 +28,11 @@ function cast(spellname, power) {
     miscastDamage = roll(`${sixes}d6`).sum
     
     return `
-        <p>You cast ${spell.spell} with ${power} power!</p>
-        <p>You rolled ${dice.rolls}.</p>
+        <p>You cast ${em(spell.spell)} with ${figure(power)} power!</p>
+        <p>You rolled ${figure(dice.rolls)}.</p>
         <p>${effect}</p>
-        ${usage>0 ? (`<p>Usage of ${spell.spell} is depleted by ${usage}</p>`) : ''}
-        ${sixes>0 ? (`<p>The spell was partially miscast. You take ${miscastDamage} damage to your WIL. Make a WIL save or go Mad!</p>`) : ''}
+        ${usage>0 ? (`<p>Usage of ${em(spell.spell)} is depleted by ${figure(usage)}</p>`) : ''}
+        ${sixes>0 ? (`<p>The spell was partially miscast. You take ${bad(miscastDamage)} damage to your WIL. Make a WIL save or go Mad!</p>`) : ''}
     `
 }
 

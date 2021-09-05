@@ -1,4 +1,5 @@
 const {firstLetter, pick, join, roll} = require('../util/functions.js')
+const {dice,good,em,bad} = require('../util/styles.js')
 
 const magicSwords = [
     {name: 'Wrought iron', effect: 'While wielded: You roll critical damage Saves with Advantage'},
@@ -78,10 +79,7 @@ function pickMagicSword() {
     let cursed = ''
     let curse = {}
     
-    if (roll('1d6').sum === 6) {
-        cursed = 'cursed '
-        curse = pick(swordCurses)
-    }
+    
     
     switch (firstLetter(sword.effect).toLowerCase()) {
         case 'w':
@@ -92,26 +90,32 @@ function pickMagicSword() {
             break;
     }
 
+    if (roll('1d6').sum === 6) {
+        cursed = 'cursed '
+        curse = pick(swordCurses)
+        effectLeadIn = 'Normally, ' + join(effectLeadIn)
+    }
+
     let effectDesc = join(sword.effect.slice(sword.effect.indexOf(":")+2,))
     
 
-    return `${cursed}magic sword of ${join(sword.name)}. ${effectLeadIn} ${effectDesc}. ${cursed && `However, it does not do this; instead it is cursed with: ${curse.curse}. It can only be lifted by ${join(curse.lift)}.`}`
+    return `${bad(cursed)}magic sword of ${em(join(sword.name))}. ${effectLeadIn} ${em(effectDesc)}. ${cursed && `However, it does not do this; instead it is cursed with: ${bad(curse.curse)}. The curse can only be lifted by ${em(join(curse.lift))}.`}`
 }
 
 const spells = require('../tables/spells.js')
 
 const treasures = [
     {order: [1],          rarity: '(rare)',     treasure: ()=>{return pickMagicSword()}                                  },
-    {order: [2],          rarity: '(rare)',     treasure: ()=>{return `magic spell: ${pick(spells).spell}`}              },
-    {order: [3],          rarity: '(rare)',     treasure: ()=>{return join(pick(trinkets))}                              },
-    {order: [4],          rarity: '(rare)',     treasure: ()=>{return join(pick(valuableTreasure))}                      },
-    {order: [5],          rarity: '(rare)',     treasure: ()=>{return join(pick(unusualTreasure))}                       },
-    {order: [6, 7, 8],    rarity: '(rare)',     treasure: ()=>{return join(pick(largeTreasure))}                         },
-    {order: [9, 10],      rarity: '(uncommon)', treasure: ()=>{return join(pick(usefulTreasure))}                        },
-    {order: [11],         rarity: '(rare)',     treasure: ()=>{return `box containing ${roll('1d6').sum * 100} pips`}    },
-    {order: [12, 13, 14], rarity: '(common)',   treasure: ()=>{return `bag containing ${roll('1d6').sum * 50} pips`}     },
-    {order: [15, 16, 17], rarity: '(common)',   treasure: ()=>{return `purse containing ${roll('1d6').sum * 10} pips`}   },
-    {order: [18, 19, 20], rarity: '(common)',   treasure: ()=>{return `loose scattering of ${roll('1d6').sum * 5} pips`} },
+    {order: [2],          rarity: '(rare)',     treasure: ()=>{return `magic spell: ${em(pick(spells).spell)}`}              },
+    {order: [3],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(trinkets)))}                              },
+    {order: [4],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(valuableTreasure)))}                      },
+    {order: [5],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(unusualTreasure)))}                       },
+    {order: [6, 7, 8],    rarity: '(rare)',     treasure: ()=>{return em(join(pick(largeTreasure)))}                         },
+    {order: [9, 10],      rarity: '(uncommon)', treasure: ()=>{return em(join(pick(usefulTreasure)))}                        },
+    {order: [11],         rarity: '(rare)',     treasure: ()=>{return `box containing ${em(roll('1d6').sum * 100)} pips`}    },
+    {order: [12, 13, 14], rarity: '(common)',   treasure: ()=>{return `bag containing ${em(roll('1d6').sum * 50)} pips`}     },
+    {order: [15, 16, 17], rarity: '(common)',   treasure: ()=>{return `purse containing ${em(roll('1d6').sum * 10)} pips`}   },
+    {order: [18, 19, 20], rarity: '(common)',   treasure: ()=>{return `loose scattering of ${em(roll('1d6').sum * 5)} pips`} },
 ]
 
 module.exports = {
