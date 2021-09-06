@@ -3,12 +3,7 @@ module.exports = {cast, choose}
 const spells = require('../tables/spells.js')
 
 
-const {
-    randomUp, 
-    sum,
-    roll,
-    pick
-} = require('../util/functions.js')
+const {randomUp, sum,roll,pick} = require('../util/functions.js')
 
 const {figure,good,em,bad} = require('../util/styles.js')
 

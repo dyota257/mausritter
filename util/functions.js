@@ -7,7 +7,8 @@ module.exports = {
     join,
     capitalise,
     firstLetter,
-    picky
+    picky,
+    chance
 };
 
 function randomUp(n) {
@@ -92,3 +93,8 @@ function capitalise(string) {
     return `${first}${rest}`
 }
 
+function chance(array) {
+    let thisroll = roll('1d6')
+    console.log(thisroll)
+    return array.indexOf(thisroll.sum) != -1
+}

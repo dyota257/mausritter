@@ -13,11 +13,19 @@ app.get('/',(req, res) => {
 
 const newPlayer = require('./actions/newPlayer.js')
 const newRoom = require('./actions/newRoom.js')
+const newSite = require('./actions/newSite.js')
+const newSettlement = require('./actions/newSettlement.js')
 app.get('/new/player',(req, res) => {
     res.render('index',{text: newPlayer()})
 })
 app.get('/new/room',(req, res) => {
     res.render('index',{text: newRoom()})
+})
+app.get('/new/site',(req, res) => {
+    res.render('index',{text: newSite()})
+})
+app.get('/new/settlement',(req, res) => {
+    res.render('index',{text: newSettlement()})
 })
 
 
@@ -81,6 +89,11 @@ app.get('/loot/:number?', (req, res) => {
         )
     }
 
+})
+
+// handle other routes if not one of the defined routes (e.g. if mistyped)
+app.use((req, res, next)=> {
+    res.render('index', {text: `I don't know what you said, can you say it again?`});
 })
 
 // Heroku NEEDS the process.end.PORT part, not 3000
