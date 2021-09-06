@@ -12,12 +12,15 @@ app.get('/',(req, res) => {
 })
 
 const newPlayer = require('./actions/newPlayer.js')
+const newRoom = require('./actions/newRoom.js')
 app.get('/new/player',(req, res) => {
-    res.render(
-        'index',
-        {text: newPlayer()}
-    )
+    res.render('index',{text: newPlayer()})
 })
+app.get('/new/room',(req, res) => {
+    res.render('index',{text: newRoom()})
+})
+
+
 
 
 const {cast, choose} = require('./actions/cast.js')
