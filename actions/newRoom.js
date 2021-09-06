@@ -11,6 +11,10 @@ const roomType = [
     {order: [6],    type: 'Lair',    hasCreatures: ()=>{return d6check([1,2,3,4,5])}, hasTreasures: ()=>{return d6check([1,2,3,4])  } },
 ]
 
+// need to add 'feature' property
+
+// need to fill in room features tables
+
 function d6check(array) {
     let thisroll = roll('1d6')
     console.log(thisroll)
@@ -20,14 +24,10 @@ function d6check(array) {
 function newRoom() {
     let room = picky(roomType, '1d6')
     
-    console.log(room.type)
-    console.log("Has creatures: " + room.hasCreatures())
-    console.log("Has treasures: " + room.hasTreasures())
-
+    // need to fill in room features
     return `
         <p>You enter ${em(one(join(room.type)))} chamber.</p>
-        ${room.hasCreatures ? `<p>You see some ${em('creatures')} inside.</p>` : ''}
-        ${room.hasTreasures ? `<p>There is ${em('treasure')} here.</p>` : ''}
+        ${room.hasCreatures() ? `<p>You see some ${em('creatures')} inside.</p>` : ''}
+        ${room.hasTreasures() ? `<p>There is ${em('treasure')} here.</p>` : ''}
     `
-    
 }
