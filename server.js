@@ -11,11 +11,11 @@ app.get('/',(req, res) => {
     )
 })
 
-const makeNewMouse = require('./actions/makeNewMouse.js')
-app.get('/make/newmouse',(req, res) => {
+const newPlayer = require('./actions/newPlayer.js')
+app.get('/new/player',(req, res) => {
     res.render(
         'index',
-        {text: makeNewMouse()}
+        {text: newPlayer()}
     )
 })
 

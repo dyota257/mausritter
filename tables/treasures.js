@@ -79,8 +79,7 @@ function pickMagicSword() {
     let cursed = ''
     let curse = {}
     
-    
-    
+       
     switch (firstLetter(sword.effect).toLowerCase()) {
         case 'w':
             effectLeadIn = "While wielding it,";

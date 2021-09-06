@@ -1,4 +1,4 @@
-module.exports = makeNewMouse
+module.exports = newPlayer
 
 const {
     names, 
@@ -21,9 +21,9 @@ const {
 } = require('../util/functions.js')
 
 const makeNewCharacterAttributes = require('./attributes.js')
-const {dice,good,em,bad} = require('../util/styles.js')
+const {figure,good,em,bad} = require('../util/styles.js')
 
-function makeNewMouse() {
+function newPlayer() {
     let myName = `${pick(names)} ${pick(matriname)}`
     let myBirthStar = pick(birthStar)
     let myPersonality = {
@@ -48,7 +48,7 @@ function makeNewMouse() {
     
     return (
         `
-            <p>You are ${myName}.</p>
+            <p>You are ${em(myName)}.</p>
             <p>You were born under the sign of the ${em(myBirthStar.sign)}, which makes you ${em(myPersonality.positive)}, but ${em(myPersonality.negative)}.</p>
             <p>You had started as a little pink mouseling but later grew to be ${em(pick(coat).colour.toLowerCase())} from head to toe, with a ${em(pick(coat).pattern.toLowerCase())} pattern.</p>
             <p>${pick(remarkPhysicalDetails)} ${em(pick(physicalDetails).toLowerCase())}, ${pick(selfEsteemPhysicalDetails)}.</p>

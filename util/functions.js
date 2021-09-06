@@ -6,7 +6,8 @@ module.exports = {
     one,
     join,
     capitalise,
-    firstLetter
+    firstLetter,
+    picky
 };
 
 function randomUp(n) {
@@ -25,25 +26,38 @@ function sum(array) {
     return result;
 }
 
+function picky (table, dice) {
+    let thisroll = roll(dice)
+    // console.log(thisroll)
+    let chosenObject = table.filter(
+        (e) => {
+            return e.order.indexOf(thisroll.sum) != -1
+        }
+    )[0]
+
+    return chosenObject
+}
+
+
 function roll(xdx) {
     
     let number = Number(xdx.split('d')[0]);
     let sides = Number(xdx.split('d')[1]);
     let rolls = [];
   
-  for (var i=1; i <= number; i++) {
-      roll = randomUp(sides);
-      // console.log(roll);
-        rolls.push(roll);
-  }
-  
-  let dice = {
-      number:number,
-      rolls: rolls,
-      sum: sum(rolls),
-  }
+    for (var i=1; i <= number; i++) {
+        let roll = randomUp(sides);
+        // console.log(roll);
+            rolls.push(roll);
+    }
+    
+    let dice = {
+        number:number,
+        rolls: rolls,
+        sum: sum(rolls),
+    }
 
-  return dice
+    return dice
 }
 
 function pick (array) {
@@ -77,3 +91,4 @@ function capitalise(string) {
 
     return `${first}${rest}`
 }
+
