@@ -29,7 +29,7 @@ function sum(array) {
 
 function picky (table, dice) {
     let thisroll = roll(dice)
-    console.log('picky:' + thisroll.sum)
+    // console.log('picky:' + thisroll.sum)
     let chosenObject = table.filter(
         (e) => {
             return e.order.indexOf(thisroll.sum) != -1

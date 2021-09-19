@@ -7,13 +7,14 @@ app.set('view engine', 'ejs')
 app.get('/',(req, res) => {
     res.render(
         'index',
-        {text: 'Enter a command to start'}
+        {text: 'Enter a command to start, or type "help" to view available commands.'}
     )
 })
 
 const newPlayer = require('./actions/newPlayer.js')
 const newRoom = require('./actions/newRoom.js')
 const newSite = require('./actions/newSite.js')
+const newHex = require('./actions/newHex.js')
 const newSettlement = require('./actions/newSettlement.js')
 app.get('/new/player',(req, res) => {
     res.render('index',{text: newPlayer()})
@@ -24,11 +25,12 @@ app.get('/new/room',(req, res) => {
 app.get('/new/site',(req, res) => {
     res.render('index',{text: newSite()})
 })
+app.get('/new/hex',(req, res) => {
+    res.render('index',{text: newHex()})
+})
 app.get('/new/settlement',(req, res) => {
     res.render('index',{text: newSettlement()})
 })
-
-
 
 
 const {cast, choose} = require('./actions/cast.js')
