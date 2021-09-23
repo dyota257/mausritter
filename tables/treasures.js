@@ -102,10 +102,12 @@ function pickMagicSword() {
 }
 
 const spells = require('../tables/spells.js')
+const mauszauber = require('../tables/mauszauber.js')
+let combinedSpells = [].concat(spells, mauszauber)
 
 const treasures = [
     {order: [1],          rarity: '(rare)',     treasure: ()=>{return pickMagicSword()}                                  },
-    {order: [2],          rarity: '(rare)',     treasure: ()=>{return `magic spell: ${em(pick(spells).spell)}`}              },
+    {order: [2],          rarity: '(rare)',     treasure: ()=>{return `magic spell: ${em(pick(combinedSpells).spell)}`}              },
     {order: [3],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(trinkets)))}                              },
     {order: [4],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(valuableTreasure)))}                      },
     {order: [5],          rarity: '(rare)',     treasure: ()=>{return em(join(pick(unusualTreasure)))}                       },
