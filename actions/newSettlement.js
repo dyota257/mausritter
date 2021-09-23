@@ -15,11 +15,11 @@ function newSettlement() {
    
     let thisInhabitants = em(join(pick(inhabitants)))
 
+    // picky on a 1d6, plus the settlement size
     let governancePick = roll('1d6').sum + lowest 
     console.log(governancePick)
     let government = em(governance.filter(
         (e) => {
-            // picky on a 1d6, plus the settlement size
             return e.order.indexOf(governancePick) != -1
         }
     )[0].leader)
@@ -39,15 +39,20 @@ function newSettlement() {
     } else {
         jobs = `${em(join(pick(industries)))}.`
     }
-    console.log(settlement)
-    console.log(government)
-    console.log(lowest)
-    console.log(notableFeature)
-    console.log(jobs)
-    return `
+
+    let somethingHappening = em(join(pick(events)))
+    
+    let tavern = ''
+
+    if (lowest <= 3) {
+        tavern = `<p>You happily discover there is a tavern here called ${em(`The ${pick(tavernStart)} ${pick(tavernEnd)}`)}</p>`
+    }
+
+    let output = `
         <p>You find yourself at ${settlement} called ${name}. ${notableFeature} You could guess that there may be ${settlementPopulation} here.</p>
         <p>The mice here ${thisInhabitants}. It looks like they are mainly ${jobs}. ${government} seems to be the way they are governed.</p>
+        <p>As you arrive today, ${somethingHappening}</p>
+        ${tavern}
     `
+    return output
 }
-
-newSettlement()
