@@ -1,7 +1,7 @@
 module.exports = {cast, choose}
 
 const spells = require('../tables/spells.js')
-
+const mauszauber = require('../tables/mauszauber.js')
 
 const {randomUp, sum,roll,pick} = require('../util/functions.js')
 
@@ -33,11 +33,16 @@ function cast(spellname, power) {
 
 
 function choose(spellname) {
-    let spell = spells.filter(
+    // combine both base spells and mauszaber
+    let combined = [].concat(spells, mauszauber)
+    
+    // filter spell array fot those that have the same spell name as $spellname (returns an array with one object in it)
+    let spell = combined.filter(
         (e) => {
             return e.spell.toLowerCase().replace(' ','')  === spellname.toLowerCase().replace(' ', '')
         }
     )
-    console.log(spell)
+    
+    // return the first item in the array (the spell object)
     return spell[0]
 }
