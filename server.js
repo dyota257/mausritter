@@ -11,10 +11,10 @@ app.get('/',(req, res) => {
     )
 })
 
-const newPlayer = require('./actions/newPlayer.js')
-const newRoom = require('./actions/newRoom.js')
-const newSite = require('./actions/newSite.js')
-const newHex = require('./actions/newHex.js')
+const newPlayer     = require('./actions/newPlayer.js')
+const newRoom       = require('./actions/newRoom.js')
+const newSite       = require('./actions/newSite.js')
+const newHex        = require('./actions/newHex.js')
 const newSettlement = require('./actions/newSettlement.js')
 app.get('/new/player',(req, res) => {
     res.render('index',{text: newPlayer()})
@@ -31,7 +31,6 @@ app.get('/new/hex',(req, res) => {
 app.get('/new/settlement',(req, res) => {
     res.render('index',{text: newSettlement()})
 })
-
 
 const {cast, choose} = require('./actions/cast.js')
 // const spells = require('./tables/spells.js')
@@ -93,7 +92,16 @@ app.get('/loot/:number?', (req, res) => {
 
 })
 
-// handle other routes if not one of the defined routes (e.g. if mistyped)
+const weather = require('./actions/weather.js')
+app.get('/weather/:season?', (req, res) => {
+    res.render(
+        'index',
+        {text: `${weather(req.params.season)}`}
+    )
+
+})
+
+// handle other routes if not one of the defined routes (e.g. if mis-typed)
 app.use((req, res, next)=> {
     res.render('index', {text: `I don't know what you said, can you say it again?`});
 })

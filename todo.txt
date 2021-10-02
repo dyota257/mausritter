@@ -1,1 +1,25 @@
 [ ] Filter for rare loot
+
+1. Make a mouse
+2. Inventory
+    - Conditions
+    - Usage
+3. How to play
+4. Magic
+    [x] Spells
+5. Recruiting help
+    [ ] Hirelings
+7. Running mausritter
+    [ ] 
+8. Creatures
+    [ ] Creatures
+9. Hexcrawl toolbox
+    [ ] Adventure site hook
+10. Adventure site toolbox
+    [x] Adventure site theme
+    [x] Rooms
+    [x] Treasure
+11. Useful tables
+    [  ] Seasons
+    [  ] NPCs
+    [  ] Adventure seeds
