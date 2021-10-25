@@ -1,100 +1,80 @@
-module.exports = {
-    randomUp, 
-    sum,
-    roll,
-    pick,
-    one,
-    join,
-    capitalise,
-    firstLetter,
-    picky,
-    chance
-};
-
+"use strict";
+// TYPESCRIPT DONE
+exports.__esModule = true;
+exports.chance = exports.picky = exports.firstLetter = exports.capitalise = exports.join = exports.one = exports.pick = exports.roll = exports.sum = exports.randomUp = void 0;
 function randomUp(n) {
-    return Math.ceil(Math.random() * n)
+    return Math.ceil(Math.random() * n);
 }
-
+exports.randomUp = randomUp;
 function randomDown(n) {
-    return Math.floor(Math.random() * n)
+    return Math.floor(Math.random() * n);
 }
-
 function sum(array) {
-    let result = 0;
-    for (var i=0; i<array.length; i++) {
-        result += array[i]
-    };
+    var result = 0;
+    for (var i = 0; i < array.length; i++) {
+        result += array[i];
+    }
+    ;
     return result;
 }
-
-function picky (table, dice) {
-    let thisroll = roll(dice)
-    // console.log('picky:' + thisroll.sum)
-    let chosenObject = table.filter(
-        (e) => {
-            return e.order.indexOf(thisroll.sum) != -1
-        }
-    )[0]
-
-    return chosenObject
+exports.sum = sum;
+function picky(table, dice) {
+    var thisroll = roll(dice);
+    var chosenObject = table.filter(function (e) {
+        return e.order.indexOf(thisroll.sum) != -1;
+    })[0];
+    return chosenObject;
 }
-
-
+exports.picky = picky;
 function roll(xdx) {
-    
-    let number = Number(xdx.split('d')[0]);
-    let sides = Number(xdx.split('d')[1]);
-    let rolls = [];
-  
-    for (var i=1; i <= number; i++) {
-        let roll = randomUp(sides);
+    var number = Number(xdx.split('d')[0]);
+    var sides = Number(xdx.split('d')[1]);
+    var rolls = [];
+    for (var i = 1; i <= number; i++) {
+        var roll_1 = randomUp(sides);
         // console.log(roll);
-            rolls.push(roll);
+        rolls.push(roll_1);
     }
-    
-    let dice = {
-        number:number,
+    var dice = {
+        number: number,
         rolls: rolls,
-        sum: sum(rolls),
-    }
-
-    return dice
+        sum: sum(rolls)
+    };
+    return dice;
 }
-
-function pick (array) {
-  let index  = randomDown(array.length);
-  let choice = array[index];
-  return choice;
+exports.roll = roll;
+function pick(array) {
+    var index = randomDown(array.length);
+    var choice = array[index];
+    return choice;
 }
-
-function firstLetter(string) {return string.slice(0,1)}
-
+exports.pick = pick;
+function firstLetter(string) { return string.slice(0, 1); }
+exports.firstLetter = firstLetter;
 function one(string) {
-    let first = firstLetter(string).toLowerCase()
-    const vowels = ['a', 'e', 'i', 'o', 'u']
-    let vstart = vowels.indexOf(first)!=-1
-
-    vstart ? article = 'an' : article = 'a'
-
-    return (`${article} ${string}`)
+    var first = firstLetter(string).toLowerCase();
+    var vowels = ['a', 'e', 'i', 'o', 'u'];
+    var vstart = vowels.indexOf(first) != -1;
+    var article;
+    vstart ? article = 'an' : article = 'a';
+    return article + " " + string;
 }
-
+exports.one = one;
 function join(sentence) {
-    let first = firstLetter(sentence).toLowerCase()
-    let rest = sentence.slice(1,)
-    return `${first}${rest}` 
+    var first = firstLetter(sentence).toLowerCase();
+    var rest = sentence.slice(1);
+    return "" + first + rest;
 }
-
-
+exports.join = join;
 function capitalise(string) {
-    let first = string.slice(0,1).toUpperCase()
-    let rest = string.slice(1,).toLowerCase()
-
-    return `${first}${rest}`
+    var first = string.slice(0, 1).toUpperCase();
+    var rest = string.slice(1).toLowerCase();
+    return "" + first + rest;
 }
-
+exports.capitalise = capitalise;
 function chance(array) {
-    let thisroll = roll('1d6')
-    console.log(thisroll)
-    return array.indexOf(thisroll.sum) != -1
+    var thisroll = roll('1d6');
+    console.log(thisroll);
+    return array.indexOf(thisroll.sum) != -1;
 }
+exports.chance = chance;

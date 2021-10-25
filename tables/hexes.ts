@@ -1,14 +1,13 @@
-"use strict";
-exports.__esModule = true;
-exports.humanTown = exports.river = exports.forest = exports.countryside = exports.hexType = void 0;
-var hexType = [
-    { order: [1, 2], type: "Countryside" },
-    { order: [3, 4], type: "Forest" },
-    { order: [5], type: "River" },
-    { order: [6], type: "Human town" }
-];
-exports.hexType = hexType;
-var countryside = [
+export {hexType, countryside, forest, river, humanTown}
+
+const hexType = [
+    {order: [1,2], type: "Countryside"},
+    {order: [3,4], type: "Forest"},
+    {order: [5], type: "River"},
+    {order: [6], type: "Human town"}
+]
+
+const countryside = [
     "Anthill",
     "Beech, lightning split",
     "Bone-white tree",
@@ -29,9 +28,9 @@ var countryside = [
     "Steep hill",
     "Stone wall",
     "Tangle of fig roots"
-];
-exports.countryside = countryside;
-var forest = [
+]
+
+const forest = [
     "Abandoned shack",
     "Bright clearing",
     "Cascading waterfalls",
@@ -52,9 +51,9 @@ var forest = [
     "Sunken hollow",
     "Tangle of roots",
     "Termite-riddled tree"
-];
-exports.forest = forest;
-var river = [
+]
+
+const river = [
     "Canal lock",
     "Converging tributaries",
     "Draping willow",
@@ -75,9 +74,9 @@ var river = [
     "Sunken barge",
     "Twisted roots",
     "Wooden bridge"
-];
-exports.river = river;
-var humanTown = [
+]
+
+const humanTown = [
     "Abandoned car",
     "Apartment balcony",
     "Blackberry hedge",
@@ -98,5 +97,4 @@ var humanTown = [
     "Tree-lined footpath",
     "Underground car park",
     "Woodshed"
-];
-exports.humanTown = humanTown;
+]

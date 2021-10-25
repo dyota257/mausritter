@@ -1,28 +1,26 @@
-module.exports = newHex
-
-const {hexType, countryside, forest, river, humanTown} = require('../tables/hexes.js')
-const {pick, picky,one, join} = require('../util/functions.js')
-const {em} = require('../util/styles.js')
-
+"use strict";
+exports.__esModule = true;
+exports.newHex = void 0;
+var hexes_1 = require("../tables/hexes");
+var functions_1 = require("../util/functions");
+var styles_1 = require("../util/styles");
 function newHex() {
-    let landmark = ''
-    let landform = picky(hexType, '1d6').type
-    switch(landform) {
+    var landmark;
+    var landform = functions_1.picky(hexes_1.hexType, '1d6').type;
+    switch (landform) {
         case "Countryside":
-            landmark = pick(countryside);
+            landmark = functions_1.pick(hexes_1.countryside);
             break;
         case "Forest":
-            landmark = pick(forest);
+            landmark = functions_1.pick(hexes_1.forest);
             break;
         case "River":
-            landmark = pick(river);
+            landmark = functions_1.pick(hexes_1.river);
             break;
         case "Human town":
-            landmark = pick(humanTown);
+            landmark = functions_1.pick(hexes_1.humanTown);
             break;
     }
-
-    return `By ${one(join(landform))}, in ${one(em(join(landmark)))}...`
+    return "By " + functions_1.one(functions_1.join(landform)) + ", in " + functions_1.one(styles_1.em(functions_1.join(landmark))) + "...";
 }
-
-console.log(newHex())
+exports.newHex = newHex;

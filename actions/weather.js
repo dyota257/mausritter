@@ -1,63 +1,39 @@
-module.exports = weather
-
-const {
-    spring,
-    springEvent,
-    summer,
-    summerEvent,
-    autumn,
-    autumnEvent,
-    winter,
-    winterEvent
-} = require('../tables/weather.js')
-
-const  {roll, capitalise, pick, picky, join} = require('../util/functions.js')
-const  {em } = require('../util/styles.js')
-
-function weather(arg) {
-    let season = arg.toLowerCase()
-    
-    // handle if season isn't one of the following things...
-    const seasons = ['spring', 'summer', 'autumn', 'winter', 'fall']
-
-    let seasonTable = {}
-    let eventTable = []
-    
-    switch (season) {
+"use strict";
+exports.__esModule = true;
+exports.weather = void 0;
+var weather_1 = require("../tables/weather");
+var functions_1 = require("../util/functions");
+var styles_1 = require("../util/styles");
+function weather(season) {
+    var seasonTable;
+    var eventTable;
+    switch (season.toLowerCase()) {
         case 'spring':
-            seasonTable = spring    
-            eventTable = springEvent
+            seasonTable = weather_1.spring;
+            eventTable = weather_1.springEvent;
             break;
         case 'summer':
-            seasonTable = summer    
-            eventTable = summerEvent
+            seasonTable = weather_1.summer;
+            eventTable = weather_1.summerEvent;
             break;
         case 'autumn':
-            seasonTable = autumn    
-            eventTable = autumnEvent
+            seasonTable = weather_1.autumn;
+            eventTable = weather_1.autumnEvent;
             break;
         case 'winter':
-            seasonTable = winter    
-            eventTable = winterEvent
+            seasonTable = weather_1.winter;
+            eventTable = weather_1.winterEvent;
             break;
     }
-
-    let todayWeather = picky(seasonTable, '2d6');
-    let eventRoll = roll('1d6').sum
-    let seasonalEvent = ''
-    
+    var todayWeather = functions_1.picky(seasonTable, '2d6');
+    var eventRoll = functions_1.roll('1d6').sum;
+    var seasonalEvent;
     if (eventRoll != 5) {
-        seasonalEvent = eventTable[eventRoll-1]
-    } else {
-        seasonalEvent = eventTable[4] + join(eventTable[5])
+        seasonalEvent = eventTable[eventRoll - 1];
     }
-
-    if (seasons.includes(season.toLowerCase())) {
-        output = `<p>It is ${em(join(todayWeather.weather))} in ${em(season)}. ${todayWeather.heavy ? `The severe weather might ${em('exhaust')} you.` : ''}</p>
-        <p>${seasonalEvent}.</p>`
-    } else {
-        output = `That is not a season! <br> Pick one of the following names of seasons: ${em('spring, summer, autumn, fall, winter')}.`
+    else {
+        seasonalEvent = eventTable[4] + functions_1.join(eventTable[5]);
     }
-    
-    return output
+    return "\n        <p>It is " + styles_1.em(functions_1.join(todayWeather.weather)) + " in " + styles_1.em(season) + ". " + (todayWeather.heavy ? "The severe weather might " + styles_1.em('exhaust') + " you." : '') + "</p>\n        <p>" + seasonalEvent + ".</p>\n    ";
 }
+exports.weather = weather;

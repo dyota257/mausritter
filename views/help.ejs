@@ -18,7 +18,22 @@
 
 <body>
     <div class="nes-container is-rounded is-dark">
-        <span class="nes-text"><%- text %></span>
+        <div class="nes-text">
+            <h1>What would you like to do?</h1>
+            <div style="background-color:#212529; padding: 1rem 0;">
+                <label>
+                    <input type="radio" class="nes-radio is-dark" name="answer-dark" checked />
+                    <span>Yes</span>
+                </label>
+                <br>
+            
+                <label>
+                    <input type="radio" class="nes-radio is-dark" name="answer-dark" />
+                    <span>No</span>
+                </label>
+                <br>
+            </div>
+        </div>
         <br>
         <br>
         <table>
@@ -51,7 +66,9 @@
                 event.preventDefault();
                 go();
             }
-        }); 
+        });
+
+        
     </script>
 
     
