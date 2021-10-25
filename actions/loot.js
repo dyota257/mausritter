@@ -6,7 +6,7 @@ var functions_1 = require("../util/functions");
 var styles_1 = require("../util/styles");
 function loot(number) {
     console.log("argument:" + number);
-    var output;
+    var output = '';
     for (var i = 0; i < number; i++) {
         // the treasures are unevenly distributed so can't just randomly pick()
         var chosenTreasure = functions_1.picky(treasures_1.treasures, '1d20');

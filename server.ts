@@ -7,8 +7,18 @@ app.set('view engine', 'ejs')
 app.get('/',(req, res) => {
     res.render(
         'index',
-        {text: 'Enter a command to start, or type "help" to view available commands.'}
+        {text: `
+            <h1>Mausknecht</h1>
+            <p>Digital assistant for <a href='https://losing-games.itch.io/mausritter'>Mausritter</a> that rolls the dice and reads the tables for you.</p>
+            <p>Enter a command to start, or type "help" to view available commands.</p>
+        `, title: ''}
     )
+})
+
+
+import {about} from './actions/about'
+app.get('/about',(req, res) => {
+    res.render('index',{text: about(),title: 'About Mausknecht'})
 })
 
 import {newPlayer}     from './actions/newPlayer'
@@ -17,11 +27,11 @@ import {newSite}       from './actions/newSite'
 import {newHex}        from './actions/newHex'
 import {newSettlement} from './actions/newSettlement'
 
-app.get('/new/player',     (req, res) => {res.render('index',{text: newPlayer()     })})
-app.get('/new/room',       (req, res) => {res.render('index',{text: newRoom()       })})
-app.get('/new/site',       (req, res) => {res.render('index',{text: newSite()       })})
-app.get('/new/hex',        (req, res) => {res.render('index',{text: newHex()        })})
-app.get('/new/settlement', (req, res) => {res.render('index',{text: newSettlement() })})
+app.get('/new/player',     (req, res) => {res.render('index',{text: newPlayer()    , title:'Your new mouse character' })})
+app.get('/new/room',       (req, res) => {res.render('index',{text: newRoom()      , title:'In this room...' })})
+app.get('/new/site',       (req, res) => {res.render('index',{text: newSite()      , title:'In this place...' })})
+app.get('/new/hex',        (req, res) => {res.render('index',{text: newHex()       , title:'Your adventure continues here...' })})
+app.get('/new/settlement', (req, res) => {res.render('index',{text: newSettlement(), title:'A mouse settlement' })})
 
 import {cast, choose} from './actions/cast'
 app.get('/cast/:spell?/:power?', (req, res) => {
@@ -41,7 +51,7 @@ app.get('/cast/:spell?/:power?', (req, res) => {
         output = cast(spell, power)
     }
 
-    res.render('index',{text:output})
+    res.render('index',{text:output, title: 'Magic!'})
 })
 
 import {recharge} from './actions/recharge'
@@ -57,16 +67,18 @@ app.get('/recharge/:spell?/', (req, res) => {
         output = recharge(choose(spell))
     }
 
-    res.render('index',{text:output})
+    res.render('index',{text:output, title: 'Recharge'})
 })
 
 import {loot} from './actions/loot'
 app.get('/loot/:number?', (req, res) => {
+    let output:string
     if(req.params.number==undefined) {
-        res.render('index',{text:loot(2)})    
+        output = loot(2)
     } else {
-        res.render('index',{text:loot(Number(req.params.number))})
+        output = loot(Number(req.params.number))
     }
+    res.render('index',{text:output, title: 'Loot!'})
 })
 
 import {weather} from './actions/weather'
@@ -74,24 +86,19 @@ app.get('/weather/:season?', (req, res) => {
     let season = req.params.season
     const seasons = ['spring', 'summer', 'autumn', 'winter']
     let output:string
-    if (seasons.includes(season.toLowerCase())) {
-        output = weather(req.params.season)
+    if (season === undefined || !seasons.includes(season.toLowerCase())) {
+        output = `Pick one of the following names of seasons: spring, summer, autumn,winter.`
     } else {
-        output = `Pick one of the following names of seasons: spring, summer, autumn,winter}.`
+        output = weather(req.params.season)
     }
-    res.render('index',{text: `${output}`})
+    res.render('index',{text: `${output}`, title:'Weather outlook'})
 
 })
 
-import {help} from './actions/help'
-app.get('/help', (req, res) => {
-    res.render('help')
-})
+app.get('/help', (req, res) => {res.render('help')})
 
 // handle other routes if not one of the defined routes (e.g. if mis-typed)
-app.use((req, res, next)=> {
-    res.render('index', {text: `I don't know what you said, can you say it again?`});
-})
+app.use((req, res, next)=> {res.render('index', {text: `I don't know what you said, can you say it again?`, title: 'What was that?'});})
 
 // Heroku NEEDS the process.end.PORT part, not 3000
 app.listen(

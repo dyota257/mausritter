@@ -18,8 +18,11 @@
 
 <body>
     <div class="nes-container is-rounded is-dark">
-        <span class="nes-text"><%- text %></span>
-        <br>
+
+        <div class="nes-text">
+            <h2><%- title %></h2>
+            <%- text %>
+        </div>
         <br>
         <table>
             <tr>
@@ -27,7 +30,6 @@
                 <td><button type="button" class="nes-btn is-primary" onclick="go()">Go</button></td>
             </tr>
         </table>
-        
     </div>
 
     <script>

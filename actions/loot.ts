@@ -7,7 +7,7 @@ import {figure,good} from '../util/styles'
 
 function loot(number:number):string {
     console.log("argument:" + number)
-    let output:string
+    let output:string = ''
 
     for (var i=0; i<number; i++) {
         

@@ -19,29 +19,34 @@
 <body>
     <div class="nes-container is-rounded is-dark">
         <div class="nes-text">
-            <h1>What would you like to do?</h1>
+            <h1>Help</h1>
+            What would you like to do?
             <div style="background-color:#212529; padding: 1rem 0;">
+                <% [
+                    {description: 'Create a new player character', action: 'new player'}, 
+                    {description: 'Cast a spell',                  action: 'cast [spell] [power]'},
+                    {description: 'Recharge a spell',              action: 'recharge [spell]'}, 
+                    {description: 'Loot treasure',                 action: 'loot [number]'},
+                    {description: 'Encounter a new site',          action: 'new site'},
+                    {description: 'Encounter a new settlement',    action: 'new settlement'},
+                    {description: 'Encounter a new room',          action: 'new room'},
+                    {description: 'Read about this app',           action: 'about'},
+                ].forEach((e)=>{%>
                 <label>
-                    <input type="radio" class="nes-radio is-dark" name="answer-dark" checked />
-                    <span>Yes</span>
+                    <input type="radio" class="nes-radio is-dark" name="command" value="<%= e.action %>" onclick="prefill()"/>
+                    <span><%= e.description %></span>
                 </label>
                 <br>
-            
-                <label>
-                    <input type="radio" class="nes-radio is-dark" name="answer-dark" />
-                    <span>No</span>
-                </label>
-                <br>
+                <%})%>
             </div>
         </div>
-        <br>
-        <br>
         <table>
             <tr>
-                <td><input type="text" id="command" class="nes-input is-dark" autofocus></td>
-                <td><button type="button" class="nes-btn is-primary" onclick="go()">Go</button></td>
+                <td><input type="text" id="command" class="nes-input is-dark"></td>
+                <td><button type="button" class="nes-btn is-primary" onclick="go()" style="min-width:20%;">Go</button></td>
             </tr>
         </table>
+        
         
     </div>
 
@@ -67,6 +72,10 @@
                 go();
             }
         });
+
+        function prefill() {
+            commandBar.value = document.querySelector('input[name=command]:checked').value
+        }
 
         
     </script>
